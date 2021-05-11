@@ -11,6 +11,27 @@
 
         var currentPlayer = "player1";
 
+        var PlayerOne = MakeGamePlayer("player1", 0, 0, 0, "name", true, true);
+        var PlayerTwo = MakeGamePlayer("player2", 0, 0, 0, "name", true, false);
+
+    function MakeGamePlayer(id, wins, losses, draws, name, readOnly, currentPlayer){
+
+      var _player = {
+
+        Id: id,
+        Wins: wins,
+        Losses: losses,
+        Draws: draws,
+        Name: name,
+        ReadOnly: readOnly,
+        CurrentPlayer: currentPlayer
+
+        };
+
+      return _player;    
+
+    }
+
     function ResetGame()
     {
 
@@ -40,8 +61,15 @@
       Message("Starting the game !!!");
       document.getElementById('player1').readOnly = true;
       document.getElementById('player2').readOnly = true;
+      PlayerOne.Name = document.getElementById('player1').value;
+      PlayerOne.ReadOnly = true;
+      PlayerOne.CurrentPlayer = true;
+      PlayerTwo.Name = document.getElementById('player2').value;
+      PlayerTwo.ReadOnly = true;
+      PlayerTwo.CurrentPlayer = false;
+
       //Message(document.getElementById('player1').value + ", it is your turn. Please enter a location and click enter.");
-      document.getElementById("footer").innerHTML = document.getElementById('player1').value + "'s turn.";
+      document.getElementById("footer").innerHTML = PlayerOne.Name + "'s turn.";
     }
 
 
@@ -52,10 +80,88 @@
 
     }
 
+
+    function UpdateWinsLossesDraws(player1, player2)
+    {
+      document.getElementById("player1wins").innerHTML = "wins:" + player1.Wins;
+      document.getElementById("player1losses").innerHTML = "losses:" + player1.Losses;
+      document.getElementById("player1draws").innerHTML = "draws:" + player1.Draws;
+
+      document.getElementById("player2wins").innerHTML = "wins:" + player2.Wins;
+      document.getElementById("player2losses").innerHTML = "losses:" + player2.Losses;
+      document.getElementById("player2draws").innerHTML = "draws:" + player2.Draws;
+
+    }
+
     function CheckForWinnerOrDraw()
     {
 
-      alert("Checking...");
+      
+        // hortizonal wins
+        if (document.getElementById("1,1").innerHTML === "X" && 
+        document.getElementById("1,2").innerHTML === "X" && 
+        document.getElementById("1,3").innerHTML === "X")
+        {
+            PlayerOne.Wins = PlayerOne.Wins + 1;
+            PlayerTwo.Losses = PlayerTwo.Losses + 1;
+            UpdateWinsLossesDraws(PlayerOne, PlayerTwo);
+            document.getElementById("footer").innerHTML = PlayerOne.Name + " wins!!!!"
+
+        }
+
+        if (document.getElementById("2,1").innerHTML === "X" && 
+        document.getElementById("2,2").innerHTML === "X" && 
+        document.getElementById("2,3").innerHTML === "X")
+        {
+
+
+        }
+
+        if (document.getElementById("3,1").innerHTML === "X" && 
+        document.getElementById("3,2").innerHTML === "X" && 
+        document.getElementById("3,3").innerHTML === "X")
+        {
+
+
+        }
+
+
+        // vertical wins
+        if (document.getElementById("1,1").innerHTML === "X" && 
+        document.getElementById("2,1").innerHTML === "X" && 
+        document.getElementById("3,1").innerHTML === "X")
+        {
+
+        }
+
+        if (document.getElementById("1,2").innerHTML === "X" && 
+        document.getElementById("2,2").innerHTML === "X" && 
+        document.getElementById("3,2").innerHTML === "X")
+        {
+
+        }
+
+        if (document.getElementById("1,3").innerHTML === "X" && 
+        document.getElementById("2,3").innerHTML === "X" && 
+        document.getElementById("3,3").innerHTML === "X")
+        {
+
+        }
+
+        // diagonal
+        if (document.getElementById("1,1").innerHTML === "X" && 
+        document.getElementById("2,2").innerHTML === "X" && 
+        document.getElementById("3,3").innerHTML === "X")
+        {
+
+        }
+
+        if (document.getElementById("1,3").innerHTML === "X" && 
+        document.getElementById("2,2").innerHTML === "X" && 
+        document.getElementById("3,1").innerHTML === "X")
+        {
+
+        }
 
     }
 
@@ -196,15 +302,15 @@
     <div>
       <label>(X) Player #1 name</label>
       <input type="text" id="player1" />
-      <label>wins: </label>
-      <label>losses: </label>
-      <label>draws: </label>
+      <label id="player1wins">wins:0</label>
+      <label id="player1losses">losses:0</label>
+      <label id="player1draws">draws:0</label>
       <br/>
       <label>(O) Player #2 name</label>
       <input type="text" id="player2" />
-      <label>wins: </label>
-      <label>losses: </label>
-      <label>draws: </label>
+      <label id="player2wins">wins:0</label>
+      <label id="player2losses">losses:0</label>
+      <label id="player2draws">draws:0</label>
       <br/>
       <button type="button" onclick="StartGame()" >Start Game</button>
       <button type="button"onclick="ResetGame()">Reset Game</button>
