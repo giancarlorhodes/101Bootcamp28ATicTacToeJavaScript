@@ -1,0 +1,202 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>Tic-Tac-Toe</title>
+
+    <script type="text/javascript">
+
+        var currentPlayer = "player1";
+
+    function ResetGame()
+    {
+
+      alert("Resetting the game !!!");
+      document.getElementById('player1').readOnly = false;
+      document.getElementById('player2').readOnly = false;
+      document.getElementById('player1').value = "";
+      document.getElementById('player2').value = "";
+      document.getElementById('tokenposition').value = "";
+      document.getElementById("1,1").innerHTML = "1,1";
+      document.getElementById("1,2").innerHTML = "1,2";
+      document.getElementById("1,3").innerHTML = "1,3";
+      document.getElementById("2,1").innerHTML = "2,1";
+      document.getElementById("2,2").innerHTML = "2,2";
+      document.getElementById("2,3").innerHTML = "2,3";
+      document.getElementById("3,1").innerHTML = "3,1";
+      document.getElementById("3,2").innerHTML = "3,2";
+      document.getElementById("3,3").innerHTML = "3,3";
+
+    }
+
+
+    function StartGame()
+    {
+
+      alert("Starting the game !!!");
+      document.getElementById('player1').readOnly = true;
+      document.getElementById('player2').readOnly = true;
+      Message(document.getElementById('player1').value + ", it is your turn. Please enter a location and click enter.");
+
+    }
+
+
+    function Message(mes)
+    {
+
+      alert(mes);
+
+    }
+
+
+    function GameLoop()
+    {
+        
+       
+        if(currentPlayer === "player1") {
+
+         // alert(document.getElementById("tokenposition").value);
+
+          if (document.getElementById("tokenposition").value === "1,1")
+          {
+            document.getElementById("1,1").innerHTML = "X";
+          }
+          else if (document.getElementById("tokenposition").value === "1,2")
+          {
+            document.getElementById("1,2").innerHTML = "X";
+          } 
+          else if (document.getElementById("tokenposition").value === "1,3")
+          {
+            document.getElementById("1,3").innerHTML = "X";
+          }
+          else if (document.getElementById("tokenposition").value === "2,1")
+          {
+            document.getElementById("2,1").innerHTML = "X";
+          } 
+          else if (document.getElementById("tokenposition").value === "2,2")
+          {
+            document.getElementById("2,2").innerHTML = "X";
+          }
+          else if (document.getElementById("tokenposition").value === "2,3")
+          {
+            document.getElementById("2,3").innerHTML = "X";
+          }
+          else if (document.getElementById("tokenposition").value === "3,1")
+          {
+            document.getElementById("3,1").innerHTML = "X";
+          } 
+          else if (document.getElementById("tokenposition").value === "3,2")
+          {
+            document.getElementById("3,2").innerHTML = "X";
+          }
+          else if (document.getElementById("tokenposition").value === "3,1")
+          {
+            document.getElementById("3,1").innerHTML = "X";
+          }   
+          
+          currentPlayer === "player2"
+          Message(document.getElementById('player2').value + ", it is your turn. Please enter a location and click enter.");
+          document.getElementById('tokenposition').value = "";
+
+
+                             
+        }else{
+
+            alert("here");
+
+        }
+
+
+    }
+
+    </script>
+  
+
+    <style>
+
+      h1 {
+      text-align: center;
+      }
+      td {
+      width: 100px;
+      height: 100px;
+      }
+
+      td {
+        text-align: center;
+        vertical-align: middle;
+      }
+
+      table {
+      margin: 5px auto;
+      }
+      .vert {
+      border-left: 2px solid black;
+      border-right: 2px solid black;
+      }
+      .hori {
+      border-top: 2px solid black;
+      border-bottom: 2px solid black;
+      }
+
+    </style>
+
+
+  </head>
+
+  <body>
+
+    <div>
+      <label>(X) Player #1 name</label>
+      <input type="text" id="player1" />
+      <label>wins: </label>
+      <label>losses: </label>
+      <label>draws: </label>
+      <br/>
+      <label>(O) Player #2 name</label>
+      <input type="text" id="player2" />
+      <label>wins: </label>
+      <label>losses: </label>
+      <label>draws: </label>
+      <br/>
+      <button type="button" onclick="StartGame()" >Start Game</button>
+      <button type="button"onclick="ResetGame()">Reset Game</button>
+      <input type="text" id="tokenposition" />
+      <button type="button" onclick="GameLoop()">Enter Token Location and Click</button>
+      <br/>
+      <p>INSTRUCTIONS: Player 1 always goes first.</p>
+
+    </div>
+    
+    <h1>Tic Tac Toe</h1>
+    
+    <table>
+      <tr>
+        <td id="1,1">1,1</td>
+        <td id="1,2" class="vert">1,2</td>
+        <td id="1,3">1,3</td>
+      </tr>
+      <tr>
+        <td id="2,1" class="hori">2,1</td>
+        <td id="2,2" class="vert hori">2,2</td>
+        <td id="2,3" class="hori">2,3</td>
+      </tr>
+      <tr>
+        <td id="3,1">3,1</td>
+        <td id="3,2" class="vert">3,2</td>
+        <td id="3,3">3,3</td>
+      </tr>
+    </table>
+
+    <br/>
+    <br/>
+    <h1>Player 1 Wins !!!</h1>
+    
+
+  </body>
+
+
+</html>
