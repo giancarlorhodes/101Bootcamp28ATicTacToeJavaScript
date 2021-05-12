@@ -9,8 +9,11 @@
 
     <script type="text/javascript">
 
-        var currentPlayer = "player1";
+      // $(document).ready(function() {
+      //     console.log( "ready!" );
+      // });
 
+        var currentPlayer = "player1";
         var PlayerOne = MakeGamePlayer("player1", 0, 0, 0, "name", true, true);
         var PlayerTwo = MakeGamePlayer("player2", 0, 0, 0, "name", true, false);
 
@@ -106,6 +109,7 @@
             PlayerTwo.Losses = PlayerTwo.Losses + 1;
             UpdateWinsLossesDraws(PlayerOne, PlayerTwo);
             document.getElementById("footer").innerHTML = PlayerOne.Name + " wins!!!!"
+            ResetBoard();
 
         }
 
@@ -268,28 +272,32 @@
     <style>
 
       h1 {
-      text-align: center;
+        text-align: center;
       }
+
       td {
-      width: 100px;
-      height: 100px;
+        width: 100px;
+        height: 100px;
       }
 
       td {
         text-align: center;
         vertical-align: middle;
+        font-size: 50px;
       }
 
       table {
-      margin: 5px auto;
+        margin: 5px auto;
       }
+
       .vert {
-      border-left: 2px solid black;
-      border-right: 2px solid black;
+        border-left: 2px solid black;
+        border-right: 2px solid black;
       }
+
       .hori {
-      border-top: 2px solid black;
-      border-bottom: 2px solid black;
+        border-top: 2px solid black;
+        border-bottom: 2px solid black;
       }
 
     </style>
