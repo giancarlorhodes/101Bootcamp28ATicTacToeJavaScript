@@ -46,7 +46,7 @@
 
     <div>
       <label>(X) Player #1 name</label>
-      <input type="text" id="player1" />
+      <input type="text" id="player1" onblur="setFooter()" />
       <label id="player1wins">wins:0</label>
       <label id="player1losses">losses:0</label>
       <label id="player1draws">draws:0</label>
@@ -90,6 +90,9 @@
    
     <script>
 
+      // TODO: account for draws
+      // TODO: track wins, losses, draws
+
       class Player
       {            
             constructor(id, wins, losses, draws, name, token)
@@ -114,9 +117,7 @@
       function ResetBoard()
       {
   
-        Message("Resetting the game !!!");
-        document.getElementById("player1").readOnly = false;
-        document.getElementById("player2").readOnly = false;
+        Message("Resetting the game !!!");      
         document.getElementById("player1").value = "";
         document.getElementById("player2").value = "";
         document.getElementById("tokenposition").value = "";
@@ -129,7 +130,7 @@
         document.getElementById("3,1").innerHTML = "3,1";
         document.getElementById("3,2").innerHTML = "3,2";
         document.getElementById("3,3").innerHTML = "3,3";
-        document.getElementById("footer").innerHTML = "X's start first";
+        
   
       }
   
@@ -140,6 +141,12 @@
   
         alert(mes);
   
+      }
+
+      function setFooter()
+      {
+        document.getElementById("footer").innerHTML = document.getElementById("player1").value + "'s turn";
+
       }
   
   
