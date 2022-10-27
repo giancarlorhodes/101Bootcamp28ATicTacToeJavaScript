@@ -6,269 +6,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta http-equiv="X-UA-Compatible" content="ie=edge" />
     <title>Tic-Tac-Toe</title>
-
-    <script type="text/javascript">
-
-      // $(document).ready(function() {
-      //     console.log( "ready!" );
-      // });
-
-        var currentPlayer = "player1";
-        var PlayerOne = MakeGamePlayer("player1", 0, 0, 0, "name", true, true);
-        var PlayerTwo = MakeGamePlayer("player2", 0, 0, 0, "name", true, false);
-
-    function MakeGamePlayer(id, wins, losses, draws, name, readOnly, currentPlayer){
-
-      var _player = {
-
-        Id: id,
-        Wins: wins,
-        Losses: losses,
-        Draws: draws,
-        Name: name,
-        ReadOnly: readOnly,
-        CurrentPlayer: currentPlayer
-
-        };
-
-      return _player;    
-
-    }
-
-    function ResetGame()
-    {
-
-      Message("Resetting the game !!!");
-      document.getElementById('player1').readOnly = false;
-      document.getElementById('player2').readOnly = false;
-      document.getElementById('player1').value = "";
-      document.getElementById('player2').value = "";
-      document.getElementById('tokenposition').value = "";
-      document.getElementById("1,1").innerHTML = "1,1";
-      document.getElementById("1,2").innerHTML = "1,2";
-      document.getElementById("1,3").innerHTML = "1,3";
-      document.getElementById("2,1").innerHTML = "2,1";
-      document.getElementById("2,2").innerHTML = "2,2";
-      document.getElementById("2,3").innerHTML = "2,3";
-      document.getElementById("3,1").innerHTML = "3,1";
-      document.getElementById("3,2").innerHTML = "3,2";
-      document.getElementById("3,3").innerHTML = "3,3";
-      document.getElementById("footer").innerHTML = "";
-
-    }
-
-
-    function StartGame()
-    {
-
-      Message("Starting the game !!!");
-      document.getElementById('player1').readOnly = true;
-      document.getElementById('player2').readOnly = true;
-      PlayerOne.Name = document.getElementById('player1').value;
-      PlayerOne.ReadOnly = true;
-      PlayerOne.CurrentPlayer = true;
-      PlayerTwo.Name = document.getElementById('player2').value;
-      PlayerTwo.ReadOnly = true;
-      PlayerTwo.CurrentPlayer = false;
-
-      //Message(document.getElementById('player1').value + ", it is your turn. Please enter a location and click enter.");
-      document.getElementById("footer").innerHTML = PlayerOne.Name + "'s turn.";
-    }
-
-
-    function Message(mes)
-    {
-
-      alert(mes);
-
-    }
-
-
-    function UpdateWinsLossesDraws(player1, player2)
-    {
-      document.getElementById("player1wins").innerHTML = "wins:" + player1.Wins;
-      document.getElementById("player1losses").innerHTML = "losses:" + player1.Losses;
-      document.getElementById("player1draws").innerHTML = "draws:" + player1.Draws;
-
-      document.getElementById("player2wins").innerHTML = "wins:" + player2.Wins;
-      document.getElementById("player2losses").innerHTML = "losses:" + player2.Losses;
-      document.getElementById("player2draws").innerHTML = "draws:" + player2.Draws;
-
-    }
-
-    function CheckForWinnerOrDraw()
-    {
-
-      
-        // hortizonal wins
-        if (document.getElementById("1,1").innerHTML === "X" && 
-        document.getElementById("1,2").innerHTML === "X" && 
-        document.getElementById("1,3").innerHTML === "X")
-        {
-            PlayerOne.Wins = PlayerOne.Wins + 1;
-            PlayerTwo.Losses = PlayerTwo.Losses + 1;
-            UpdateWinsLossesDraws(PlayerOne, PlayerTwo);
-            document.getElementById("footer").innerHTML = PlayerOne.Name + " wins!!!!"
-            ResetBoard();
-
-        }
-
-        if (document.getElementById("2,1").innerHTML === "X" && 
-        document.getElementById("2,2").innerHTML === "X" && 
-        document.getElementById("2,3").innerHTML === "X")
-        {
-
-
-        }
-
-        if (document.getElementById("3,1").innerHTML === "X" && 
-        document.getElementById("3,2").innerHTML === "X" && 
-        document.getElementById("3,3").innerHTML === "X")
-        {
-
-
-        }
-
-
-        // vertical wins
-        if (document.getElementById("1,1").innerHTML === "X" && 
-        document.getElementById("2,1").innerHTML === "X" && 
-        document.getElementById("3,1").innerHTML === "X")
-        {
-
-        }
-
-        if (document.getElementById("1,2").innerHTML === "X" && 
-        document.getElementById("2,2").innerHTML === "X" && 
-        document.getElementById("3,2").innerHTML === "X")
-        {
-
-        }
-
-        if (document.getElementById("1,3").innerHTML === "X" && 
-        document.getElementById("2,3").innerHTML === "X" && 
-        document.getElementById("3,3").innerHTML === "X")
-        {
-
-        }
-
-        // diagonal
-        if (document.getElementById("1,1").innerHTML === "X" && 
-        document.getElementById("2,2").innerHTML === "X" && 
-        document.getElementById("3,3").innerHTML === "X")
-        {
-
-        }
-
-        if (document.getElementById("1,3").innerHTML === "X" && 
-        document.getElementById("2,2").innerHTML === "X" && 
-        document.getElementById("3,1").innerHTML === "X")
-        {
-
-        }
-
-    }
-
-
-    function GameLoop()
-    {
-              
-        if(currentPlayer === "player1") 
-        {  
-          if (document.getElementById("tokenposition").value === "1,1")
-          {
-            document.getElementById("1,1").innerHTML = "X";
-          }
-          else if (document.getElementById("tokenposition").value === "1,2")
-          {
-            document.getElementById("1,2").innerHTML = "X";
-          } 
-          else if (document.getElementById("tokenposition").value === "1,3")
-          {
-            document.getElementById("1,3").innerHTML = "X";
-          }
-          else if (document.getElementById("tokenposition").value === "2,1")
-          {
-            document.getElementById("2,1").innerHTML = "X";
-          } 
-          else if (document.getElementById("tokenposition").value === "2,2")
-          {
-            document.getElementById("2,2").innerHTML = "X";
-          }
-          else if (document.getElementById("tokenposition").value === "2,3")
-          {
-            document.getElementById("2,3").innerHTML = "X";
-          }
-          else if (document.getElementById("tokenposition").value === "3,1")
-          {
-            document.getElementById("3,1").innerHTML = "X";
-          } 
-          else if (document.getElementById("tokenposition").value === "3,2")
-          {
-            document.getElementById("3,2").innerHTML = "X";
-          }
-          else if (document.getElementById("tokenposition").value === "3,3")
-          {
-            document.getElementById("3,3").innerHTML = "X";
-          }   
-          
-          currentPlayer = "player2";
-          document.getElementById('tokenposition').value = "";
-                                    
-        }
-        else
-        {
-         
-          if (document.getElementById("tokenposition").value === "1,1")
-          {
-            document.getElementById("1,1").innerHTML = "O";
-          }
-          else if (document.getElementById("tokenposition").value === "1,2")
-          {
-            document.getElementById("1,2").innerHTML = "O";
-          } 
-          else if (document.getElementById("tokenposition").value === "1,3")
-          {
-            document.getElementById("1,3").innerHTML = "O";
-          }
-          else if (document.getElementById("tokenposition").value === "2,1")
-          {
-            document.getElementById("2,1").innerHTML = "O";
-          } 
-          else if (document.getElementById("tokenposition").value === "2,2")
-          {
-            document.getElementById("2,2").innerHTML = "O";
-          }
-          else if (document.getElementById("tokenposition").value === "2,3")
-          {
-            document.getElementById("2,3").innerHTML = "O";
-          }
-          else if (document.getElementById("tokenposition").value === "3,1")
-          {
-            document.getElementById("3,1").innerHTML = "O";
-          } 
-          else if (document.getElementById("tokenposition").value === "3,2")
-          {
-            document.getElementById("3,2").innerHTML = "O";
-          }
-          else if (document.getElementById("tokenposition").value === "3,3")
-          {
-            document.getElementById("3,3").innerHTML = "O";         
-          }  
-          
-          currentPlayer = "player1";
-         
-        }
-
-        // Message(document.getElementById(currentPlayer).value + ", it is your turn. Please enter a location and click enter.");
-        document.getElementById('tokenposition').value = "";   
-        // CheckForWinnerOrDraw();
-        document.getElementById("footer").innerHTML = document.getElementById(currentPlayer).value + "'s turn";
-    }
-
-    </script>
-  
-
     <style>
 
       h1 {
@@ -313,6 +50,7 @@
       <label id="player1wins">wins:0</label>
       <label id="player1losses">losses:0</label>
       <label id="player1draws">draws:0</label>
+      <label>(Player 1 always goes first)</label>
       <br/>
       <label>(O) Player #2 name</label>
       <input type="text" id="player2" />
@@ -320,13 +58,10 @@
       <label id="player2losses">losses:0</label>
       <label id="player2draws">draws:0</label>
       <br/>
-      <button type="button" onclick="StartGame()" >Start Game</button>
-      <button type="button"onclick="ResetGame()">Reset Game</button>
       <input type="text" id="tokenposition" />
-      <button type="button" onclick="GameLoop();CheckForWinnerOrDraw();">Enter Token Location and Click</button>
-      <br/>
-      <p>INSTRUCTIONS: Player 1 always goes first.</p>
-
+      <button type="button" onclick="Update()">Enter Token Location and Click</button>
+      <button type="button"onclick="ResetBoard()">Reset Game</button>
+      <br/>     
     </div>
     
     <h1>Tic Tac Toe</h1>
@@ -351,7 +86,230 @@
 
     <br/>
     <br/>
-    <h1 id="footer"></h1>
+    <h1 id="footer">X's start first</h1>
+   
+    <script>
+
+      class Player
+      {            
+            constructor(id, wins, losses, draws, name, token)
+            {
+              this.HtmlId = id;
+              this.Wins = wins;
+              this.Losses = losses;
+              this.Draws = draws;
+              this.PlayerName = name;
+              this.PlayerToken = token;
+            }   
+      }
+    
+      let PlayerOne = new Player("player1", 0, 0, 0, "", "X");
+      let PlayerTwo = new Player("player2", 0, 0, 0, "", "O");
+      let CurrentPlayer = new Player(); 
+      CurrentPlayer = PlayerOne;
+
+      console.log(PlayerOne);
+      console.log(PlayerTwo);
+  
+      function ResetBoard()
+      {
+  
+        Message("Resetting the game !!!");
+        document.getElementById("player1").readOnly = false;
+        document.getElementById("player2").readOnly = false;
+        document.getElementById("player1").value = "";
+        document.getElementById("player2").value = "";
+        document.getElementById("tokenposition").value = "";
+        document.getElementById("1,1").innerHTML = "1,1";
+        document.getElementById("1,2").innerHTML = "1,2";
+        document.getElementById("1,3").innerHTML = "1,3";
+        document.getElementById("2,1").innerHTML = "2,1";
+        document.getElementById("2,2").innerHTML = "2,2";
+        document.getElementById("2,3").innerHTML = "2,3";
+        document.getElementById("3,1").innerHTML = "3,1";
+        document.getElementById("3,2").innerHTML = "3,2";
+        document.getElementById("3,3").innerHTML = "3,3";
+        document.getElementById("footer").innerHTML = "X's start first";
+  
+      }
+  
+  
+   
+      function Message(mes)
+      {
+  
+        alert(mes);
+  
+      }
+  
+  
+      function UpdateWinsLossesDraws(player1, player2)
+      {
+
+        document.getElementById("player1wins").innerHTML = "wins:" + player1.Wins;
+        document.getElementById("player1losses").innerHTML = "losses:" + player1.Losses;
+        document.getElementById("player1draws").innerHTML = "draws:" + player1.Draws;
+  
+        document.getElementById("player2wins").innerHTML = "wins:" + player2.Wins;
+        document.getElementById("player2losses").innerHTML = "losses:" + player2.Losses;
+        document.getElementById("player2draws").innerHTML = "draws:" + player2.Draws;
+  
+      }
+  
+      function CheckForWinnerOrDraw()
+      {
+         
+          // hortizonal wins
+          if (document.getElementById("1,1").innerHTML === "X" && 
+          document.getElementById("1,2").innerHTML === "X" && 
+          document.getElementById("1,3").innerHTML === "X")
+          {
+             Message("Winner Winner Chicken Dinner !!!");
+             return PlayerOne.PlayerName + " wins!!!";
+          }
+          else if(document.getElementById("1,1").innerHTML === "O" && 
+          document.getElementById("1,2").innerHTML === "O" && 
+          document.getElementById("1,3").innerHTML === "O")
+          {
+            Message("Winner Winner Chicken Dinner !!!");
+            return PlayerTwo.PlayerName + " wins!!!";
+          }
+          else if (document.getElementById("2,1").innerHTML === "X" && 
+          document.getElementById("2,2").innerHTML === "X" && 
+          document.getElementById("2,3").innerHTML === "X")
+          {
+            Message("Winner Winner Chicken Dinner !!!");
+            return PlayerOne.PlayerName + " wins!!!";
+          }
+          else if (document.getElementById("2,1").innerHTML === "O" && 
+          document.getElementById("2,2").innerHTML === "O" && 
+          document.getElementById("2,3").innerHTML === "O")
+          {
+            Message("Winner Winner Chicken Dinner !!!");
+            return  PlayerTwo.PlayerName + " wins!!!";
+          }
+          else if (document.getElementById("3,1").innerHTML === "X" && 
+          document.getElementById("3,2").innerHTML === "X" && 
+          document.getElementById("3,3").innerHTML === "X")
+          {
+            Message("Winner Winner Chicken Dinner !!!");
+            return PlayerOne.PlayerName + " wins!!!";
+          }
+          else if (document.getElementById("3,1").innerHTML === "O" && 
+          document.getElementById("3,2").innerHTML === "O" && 
+          document.getElementById("3,3").innerHTML === "O")
+          {
+            Message("Winner Winner Chicken Dinner !!!");
+            return PlayerTwo.PlayerName + " wins!!!";
+          }
+          // vertical wins
+          else if (document.getElementById("1,1").innerHTML === "X" && 
+          document.getElementById("2,1").innerHTML === "X" && 
+          document.getElementById("3,1").innerHTML === "X")
+          {
+            Message("Winner Winner Chicken Dinner !!!");
+            return PlayerOne.PlayerName + " wins!!!";
+          }
+          else if (document.getElementById("1,1").innerHTML === "O" && 
+          document.getElementById("2,1").innerHTML === "O" && 
+          document.getElementById("3,1").innerHTML === "O")
+          {
+            Message("Winner Winner Chicken Dinner !!!");
+            return PlayerTwo.PlayerName + " wins!!!";
+          }
+          else if (document.getElementById("1,2").innerHTML === "X" && 
+          document.getElementById("2,2").innerHTML === "X" && 
+          document.getElementById("3,2").innerHTML === "X")
+          {
+            Message("Winner Winner Chicken Dinner !!!");
+            return PlayerOne.PlayerName + " wins!!!";
+          }
+          else if (document.getElementById("1,2").innerHTML === "O" && 
+          document.getElementById("2,2").innerHTML === "O" && 
+          document.getElementById("3,2").innerHTML === "O")
+          {
+            Message("Winner Winner Chicken Dinner !!!");
+            return PlayerTwo.PlayerName + " wins!!!";
+          }
+          else if (document.getElementById("1,3").innerHTML === "X" && 
+          document.getElementById("2,3").innerHTML === "X" && 
+          document.getElementById("3,3").innerHTML === "X")
+          {
+            Message("Winner Winner Chicken Dinner !!!");
+            return PlayerOne.PlayerName + " wins!!!";
+          }
+          else if (document.getElementById("1,3").innerHTML === "O" && 
+          document.getElementById("2,3").innerHTML === "O" && 
+          document.getElementById("3,3").innerHTML === "O")
+          {
+            Message("Winner Winner Chicken Dinner !!!");
+            return PlayerTwo.PlayerName + " wins!!!";
+          }
+          // diagonal
+          else if (document.getElementById("1,1").innerHTML === "X" && 
+          document.getElementById("2,2").innerHTML === "X" && 
+          document.getElementById("3,3").innerHTML === "X")
+          {
+            Message("Winner Winner Chicken Dinner !!!");
+            return PlayerOne.PlayerName + " wins!!!";
+          }
+          else if (document.getElementById("1,1").innerHTML === "O" && 
+          document.getElementById("2,2").innerHTML === "O" && 
+          document.getElementById("3,3").innerHTML === "O")
+          {
+            Message("Winner Winner Chicken Dinner !!!");
+            return PlayerTwo.PlayerName + " wins!!!";
+          }
+          else if (document.getElementById("1,3").innerHTML === "X" && 
+          document.getElementById("2,2").innerHTML === "X" && 
+          document.getElementById("3,1").innerHTML === "X")
+          {
+            Message("Winner Winner Chicken Dinner !!!");
+            return PlayerOne.PlayerName + " wins!!!";
+          }
+          else if (document.getElementById("1,3").innerHTML === "O" && 
+          document.getElementById("2,2").innerHTML === "O" && 
+          document.getElementById("3,1").innerHTML === "O")
+          {
+            Message("Winner Winner Chicken Dinner !!!");
+            return PlayerTwo.PlayerName + " wins!!!";
+          }
+          else
+          {
+            //const _p = CurrentPlayer.PlayerName + "'s turn";
+            //console.log(_p);
+            return CurrentPlayer.PlayerName + "'s turn";
+          }
+  
+      }
+  
+      function UpdateLocation(parmPlayer, parmPosition)
+      {
+  
+        console.log(parmPlayer);
+        document.getElementById(parmPosition).innerHTML = parmPlayer.PlayerToken;
+        const _current = (parmPlayer === PlayerOne) ? PlayerTwo : PlayerOne; // flip the player
+        CurrentPlayer = _current;
+        document.getElementById("tokenposition").value = "";    
+        console.log(_current);
+  
+      }
+   
+  
+      function Update()
+      {
+        PlayerOne.PlayerName = document.getElementById('player1').value;      
+        PlayerTwo.PlayerName = document.getElementById('player2').value;
+        document.getElementById("footer").innerHTML = PlayerOne.PlayerName + "'s turn.";
+       
+        let _location = document.getElementById("tokenposition").value;
+        UpdateLocation(CurrentPlayer, _location); // token is in the Player object
+        document.getElementById("footer").innerHTML  = CheckForWinnerOrDraw();
+      
+      }
+  
+      </script>
+    
     
 
   </body>
